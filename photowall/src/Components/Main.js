@@ -13,6 +13,7 @@ class Main extends Component {
             posts: [],
         };
         this.removePhoto = this.removePhoto.bind(this);
+        this.addPhoto = this.addPhoto.bind(this);
     }
 
     render() {
@@ -28,10 +29,13 @@ class Main extends Component {
                     )
                 }} />
 
-                <Route path="/AddPhoto" render={() => {
+                <Route path="/AddPhoto" render={({history}) => {
                     return (
                         <div>
-                            <AddPhoto />
+                            <AddPhoto onAddPhoto={(addedPost) => {
+                                this.addPhoto(addedPost);
+                                history.push('/');
+                            }} />
                         </div>
                     );
                 }} />
@@ -49,8 +53,16 @@ class Main extends Component {
     }
 
     componentDidUpdate(previousState, currState) {
-        console.log(previousState);
-        console.log(this.state);
+
+    }
+
+    addPhoto(postAdded) {
+        this.setState((state) => {
+            return {
+                posts: state.posts.concat([postAdded])
+            };
+        })
+
     }
 
     removePhoto(postRemoved) {
@@ -63,7 +75,7 @@ class Main extends Component {
         });
     }
 
-   
+
 }
 
 function fetchDataFromDB() {
