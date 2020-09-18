@@ -154,11 +154,18 @@ button,
 }
 
 button:hover,
-.button:hover,
-button:focus,
-.button:focus {
+button:focus
+ {
     color:white;
     background: rgb(255, 63, 63);
+    outline: 0;
+}
+
+.button:hover,
+.button:focus
+{
+    background: #065784;
+    color:white;
     outline: 0;
 }
 

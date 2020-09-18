@@ -1,6 +1,21 @@
 import posts from '../Resourses/posts'
+import {combineReducers} from 'redux'
 
-const postReducer = (state = posts, action) => {
+const commentsReducer = (state = {}, action) => {
+    switch (action.type) {
+        case "ADD_COMMENT":
+            if (!state[action.postId]){
+                return {...state, [action.postId]: [action.comment]};
+            } else {
+                return {...state, [action.postId]: [...state[action.postId], action.comment]};
+            }
+            
+        default:
+            return state;
+    }
+};
+
+const postsReducer = (state = posts, action) => {
 
     switch (action.type) {
         case 'REMOVE_POST':
@@ -10,6 +25,12 @@ const postReducer = (state = posts, action) => {
         default:
             return state;
     }
-}
+};
 
-export default postReducer;
+
+const rootReducer = combineReducers({
+    postsReducer,
+    commentsReducer
+});
+
+export default rootReducer;

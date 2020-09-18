@@ -1,22 +1,23 @@
-import { waitForElement } from '@testing-library/react';
-import React, { Component } from 'react';
-import Photo from './Photo';
+import React, { Component } from 'react'
+import Photo from './Photo'
+import Comments from './Comments'
+
 
 class SinglePhoto extends Component {
     render() {
         const { match, posts } = this.props;
         const id = match.params.id;
         const post = posts.find((post) => post.id === id);
-        
-        const element = (
-            <div className='single-photo'>
-                <Photo post={post} />
-                
+        const comments = this.props.comments[match.params.id] || [];
+        const index = this.props.posts.findIndex((post) => post.id === id);
 
+        return (
+            <div className='single-photo'>
+                <Photo key={index} {...this.props} post={post} index={index} />
+                <Comments addComment={this.props.addComment} comments={comments} id={id} />
             </div>
         );
 
-        return element;
     }
 }
 

@@ -1,38 +1,32 @@
-import React, { Component } from 'react';
-import PhotoWall from './PhotoWall';
-import AddPhoto from './AddPhoto';
-import SinglePhoto from './SinglePhoto';
-import Title from './Title';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react'
+import PhotoWall from './PhotoWall'
+import AddPhoto from './AddPhoto'
+import { Route, Link } from 'react-router-dom'
+import SinglePhoto from './SinglePhoto'
 
 class Main extends Component {
-
+    
     render() {
         return (
-            <div >
-                <Title title={'PhotoWall'} />
 
-                <Route exact path="/" render={() => {
-                    return (
+            <div>
+                <h1>
+                    <Link to="/"> Photowall </Link>
+                </h1>
+                <Route exact path="/" render={() => (
+                    <div>
                         <PhotoWall {...this.props} />
-                    )
-                }} />
-
-                <Route path="/AddPhoto" render={({ history }) => {
-                    return (
-                        <AddPhoto {...this.props} />
-                    );
-                }} />
-
-                <Route path="/SinglePhoto/:id" render={(params) => {
-                    return (
-                        <SinglePhoto {...this.props} {...params} />
-                    );
-                }} />
+                    </div>
+                )} />
+                <Route path="/AddPhoto" render={({ history }) => (
+                    <AddPhoto {...this.props} onHistory={history} />
+                )} />
+                <Route path="/single/:id" render={(params) => (
+                    <SinglePhoto {...this.props} {...params} />
+                )} />
             </div>
         )
     }
-
 }
 
-export default Main;
+export default Main

@@ -1,37 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class AddPhoto extends Component {
-
+    
     constructor() {
-        super();
-        this.handleAddPhoto = this.handleAddPhoto.bind(this);
+        super()
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
-
-    handleAddPhoto(event) {
+    
+    handleSubmit(event) {
         event.preventDefault();
-
-        const imgURL = event.target.elements.link.value;
-        const imgDesc = event.target.elements.desc.value;
+        const imageLink = event.target.elements.link.value
+        const description = event.target.elements.description.value
         const post = {
-            id: 0,
-            description: imgDesc,
-            imageLink: imgURL
-        };
-        if (imgURL && imgDesc) {
-            this.props.addPost(post);
-            this.props.history.push('/');
+            id: Number(new Date()),
+            description: description,
+            imageLink: imageLink
         }
-
+        if (description && imageLink) {
+            this.props.addPost(post)
+            this.props.onHistory.push('/')
+        }
     }
-
+    
     render() {
         return (
             <div>
-                <div className='form'>
-                    <form onSubmit={this.handleAddPhoto}>
-                        <input name='link' type='text' placeholder='Photo Link' />
-                        <input name='desc' type='text' placeholder='Description' />
-                        <button className='button'> Add Photo </button>
+                <div className="form">
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" placeholder="Link" name="link" />
+                        <input type="text" placeholder="Desciption" name="description" />
+                        <button> Post </button>
                     </form>
                 </div>
             </div>
@@ -39,5 +37,4 @@ class AddPhoto extends Component {
     }
 }
 
-
-export default AddPhoto;
+export default AddPhoto
