@@ -21,7 +21,7 @@ class AddPhoto extends Component {
         };
         if (imgURL && imgDesc) {
             this.props.addPost(post);
-            this.props.onHistory.push('/');
+            this.props.history.push('/');
         }
 
     }
