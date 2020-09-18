@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './styles/stylesheet.css';
+import './Styles/stylesheet.css';
 import { createStore } from 'redux';
-import rootReducer from './redux/reducer';
+import rootReducer from './Redux/reducer';
 import { Provider } from 'react-redux';
 import App from './Components/App'
 
-const store = createStore(rootReducer);
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const element = (
     <Provider store={store}>

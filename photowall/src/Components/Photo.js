@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 
 function Photo(props) {
 
     const post = props.post;
 
     const element = <figure className="figure">
-        <img className="photo" src={post.imageLink} alt={post.description} />
+        <Link to={`SinglePhoto/${post.id}`}>
+            <img className="photo" src={post.imageLink} alt={post.description} />
+        </Link>
         <figcaption><p> {post.description} </p></figcaption>
         <div className="button-container">
             <button className="button" onClick={() => {

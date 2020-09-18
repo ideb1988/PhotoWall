@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Title from './Title';
-
 
 class AddPhoto extends Component {
 
@@ -29,7 +27,6 @@ class AddPhoto extends Component {
     render() {
         return (
             <div>
-                <Title title={'PhotoWall: Add Photos'} />
                 <div className='form'>
                     <form onSubmit={this.handleAddPhoto}>
                         <input name='link' type='text' placeholder='Photo Link' />
