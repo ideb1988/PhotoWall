@@ -4,25 +4,26 @@ import Title from './Title';
 
 class AddPhoto extends Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.handleAddPhoto=this.handleAddPhoto.bind(this);
+        this.handleAddPhoto = this.handleAddPhoto.bind(this);
     }
 
-    handleAddPhoto(event){
+    handleAddPhoto(event) {
         event.preventDefault();
 
         const imgURL = event.target.elements.link.value;
         const imgDesc = event.target.elements.desc.value;
-        const post={
-             id: 0,
-             description: imgDesc,
-             imageLink: imgURL
+        const post = {
+            id: 0,
+            description: imgDesc,
+            imageLink: imgURL
         };
-        if (imgURL && imgDesc){
-            this.props.onAddPhoto(post);
+        if (imgURL && imgDesc) {
+            this.props.addPost(post);
+            this.props.onHistory.push('/');
         }
-        
+
     }
 
     render() {
@@ -30,11 +31,11 @@ class AddPhoto extends Component {
             <div>
                 <Title title={'PhotoWall: Add Photos'} />
                 <div className='form'>
-                <form onSubmit={this.handleAddPhoto}>
-                    <input name='link' type='text' placeholder='Photo Link'/>
-                    <input name='desc' type='text' placeholder='Description'/>
-                    <button className='button'> Add Photo </button>
-                </form>
+                    <form onSubmit={this.handleAddPhoto}>
+                        <input name='link' type='text' placeholder='Photo Link' />
+                        <input name='desc' type='text' placeholder='Description' />
+                        <button className='button'> Add Photo </button>
+                    </form>
                 </div>
             </div>
         )
