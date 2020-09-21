@@ -12,12 +12,11 @@ class AddPhoto extends Component {
         const imageLink = event.target.elements.link.value
         const description = event.target.elements.description.value
         const post = {
-            id: Number(new Date()),
             description: description,
-            imageLink: imageLink
+            url: imageLink
         }
         if (description && imageLink) {
-            this.props.addPost(post)
+            this.props.insertPost(post)
             this.props.onHistory.push('/')
         }
     }

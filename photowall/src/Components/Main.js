@@ -6,6 +6,10 @@ import SinglePhoto from './SinglePhoto'
 
 class Main extends Component {
     
+    componentDidMount(){
+        this.props.fetchPosts();
+    }
+
     render() {
         return (
 

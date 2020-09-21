@@ -1,4 +1,3 @@
-import posts from '../Resourses/posts'
 import {combineReducers} from 'redux'
 
 const commentsReducer = (state = {}, action) => {
@@ -15,18 +14,20 @@ const commentsReducer = (state = {}, action) => {
     }
 };
 
-const postsReducer = (state = posts, action) => {
+const postsReducer = (state = [], action) => {
 
     switch (action.type) {
+        case 'LOAD_POST':
+            return [...action.posts]        
         case 'REMOVE_POST':
-            return [...state.slice(0, action.index), ...state.slice(action.index + 1)];
+            const posts=state.filter(post => post._id !== action.id)
+            return [...posts];
         case 'ADD_POST':
             return [...state, action.post];
         default:
-            return state;
+            return [...state];
     }
 };
-
 
 const rootReducer = combineReducers({
     postsReducer,

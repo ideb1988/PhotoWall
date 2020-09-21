@@ -10,7 +10,7 @@ function PhotoWall(props) {
         <div className="photoGrid" >
             {props.posts
                 .sort(function (x, y) {
-                    return y.id - x.id
+                    return y._id - x._id
                 })
                 .map((post, index) => <Photo key={index} post={post} {...props} index={index} />)}
         </div>
